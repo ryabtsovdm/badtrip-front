@@ -5,7 +5,7 @@ import Registration from "./Registration.vue";
 import Login from "./Login.vue";
 import HomeTrips from "./HomeTrips.vue";
 import HomeProps from "./HomeProps.vue";
-import { mapMutations, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "home",

@@ -4,6 +4,7 @@ import axios from "axios";
 
 Vue.use(Vuex);
 
+const host = "http://cv15621.tmweb.ru";
 const SET_TRIPS = "SET_TRIPS";
 const SET_PROPS = "SET_PROPS";
 
@@ -24,7 +25,7 @@ const store = new Vuex.Store({
     async setTrips({ commit }) {
       try {
         const { data } = await axios({
-          url: "http://cv15621.tmweb.ru/api/trips/getlist"
+          url: `${host}/api/trips/getlist`
         });
         commit(SET_TRIPS, data);
       } catch (error) {
@@ -37,7 +38,7 @@ const store = new Vuex.Store({
     async setProps({ commit }) {
       try {
         const { data } = await axios({
-          url: "http://cv15621.tmweb.ru/api/projects/getlist"
+          url: `${host}/api/projects/getlist`
         });
         commit(SET_PROPS, data);
       } catch (error) {
@@ -45,6 +46,56 @@ const store = new Vuex.Store({
           "Error while loading props list",
           error
         );
+      }
+    },
+    /* eslint-disable-line */ async login(
+      { commit },
+      { email, password },
+      onSuccess
+    ) {
+      try {
+        const { data } = await axios({
+          url: `${host}/api/login`,
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json"
+          },
+          data: {
+            email,
+            password
+          }
+        });
+
+        localStorage.setItem("token", data.token);
+        onSuccess();
+      } catch (error) {
+        /* eslint-disable-line */ console.log("Error while login", error);
+      }
+    },
+    /* eslint-disable-line */ async register(
+      { commit },
+      { email, password },
+      onSuccess
+    ) {
+      try {
+        const { data } = await axios({
+          url: `${host}/api/register`,
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            Accept: "application/json"
+          },
+          data: {
+            email,
+            password
+          }
+        });
+
+        localStorage.setItem("token", data.token);
+        onSuccess();
+      } catch (error) {
+        /* eslint-disable-line */ console.log("Error while login", error);
       }
     }
   },

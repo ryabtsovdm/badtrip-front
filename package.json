@@ -12,6 +12,7 @@
     "postcss-nested": "^4.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
+    "vue-yandex-maps": "^0.7.15",
     "vue2-google-maps": "^0.10.2",
     "vuex": "^3.0.1"
   },
