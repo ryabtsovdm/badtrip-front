@@ -78,10 +78,7 @@ const store = new Vuex.Store({
         /* eslint-disable-line */ console.log("Error while login", error);
       }
     },
-    /* eslint-disable-line */ async register(
-      { commit },
-      { email, password, onSuccess }
-    ) {
+    async register({ commit }, { email, password, onSuccess }) {
       try {
         const { data } = await axios({
           url: `${host}/api/register`,

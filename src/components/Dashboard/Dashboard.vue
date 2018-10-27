@@ -1,8 +1,44 @@
 
 <script>
+import axios from "axios";
+
 export default {
   name: "dashboard",
-  components: {}
+  data: () => ({
+    tab: "profile",
+    trips: [],
+    props: []
+  }),
+  methods: {
+    setTrips: function(trips) {
+      this.trips = trips;
+    },
+    setProps: function(props) {
+      this.props = props;
+    }
+  },
+  components: {},
+  async created() {
+    try {
+      const { data } = await axios({
+        url: `${host}/api/register`,
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          Accept: "application/json"
+        },
+        data: {
+          email,
+          password
+        }
+      });
+
+      localStorage.setItem("token", data.token);
+      onSuccess();
+    } catch (error) {
+      /* eslint-disable-line */ console.log("Error while login", error);
+    }
+  }
 };
 </script>
 
@@ -13,9 +49,12 @@ export default {
     </div>
     <div class="main">
       <div class="menu">
-        <div class="option">Профиль</div>
-        <div class="option">Мои предложения</div>
-        <div class="option">Мои путешествия</div>
+        <div v-bind:class="{ active: tab === 'profile', option: true }">Профиль</div>
+        <div v-bind:class="{ active: tab === 'props', option: true }">Мои предложения</div>
+        <div v-bind:class="{ active: tab === 'trips', option: true }">Мои путешествия</div>
+      </div>
+      <div class="content">
+
       </div>
     </div>
   </div>
@@ -50,6 +89,11 @@ export default {
 .option {
   border-bottom: 1px solid #888;
   padding: 0.3rem 0.5rem;
+  opacity: 0.5;
+}
+
+.active {
+  opacity: 1;
 }
 
 .option:last-child {
