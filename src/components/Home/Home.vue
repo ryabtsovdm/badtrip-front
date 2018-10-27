@@ -6,7 +6,7 @@ import Login from "./Login.vue";
 import HomeTrips from "./HomeTrips.vue";
 import HomeProps from "./HomeProps.vue";
 import axios from "axios";
-import { mapActions } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "home",
@@ -20,6 +20,11 @@ export default {
   data: () => ({
     stage: "promo"
   }),
+  computed: {
+    trips() {
+      return this.$store.getters.getTrips;
+    }
+  },
   methods: {
     setStage: function(val) {
       this.stage = val;
@@ -29,14 +34,16 @@ export default {
         const { data } = await axios({
           url: "http://cv15621.tmweb.ru/api/trips/getlist"
         });
-        console.log(this);
-        this.$store.dispatch("SET_TRIPS", data);
+        this.setTrips(data);
       } catch (error) {
         console.log("Error while loading trips list", error);
       }
-    }
+    },
+    ...mapMutations({
+      setTrips: "SET_TRIPS"
+    })
   },
-  beforeCreate() {
+  created() {
     this.fetchData();
   }
 };
