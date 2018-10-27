@@ -5,10 +5,26 @@ const host = "http://cv15621.tmweb.ru";
 
 export default {
   name: "dashboard",
+  computed: {
+    user() {
+      console.log(this.$store.getters.getUser);
+      return this.$store.getters.getUser;
+    }
+  },
   data: () => ({
     tab: "profile",
-    trips: [],
-    props: []
+    trips: [
+      { text: "trip" },
+      { text: "trip" },
+      { text: "trip" },
+      { text: "trip" }
+    ],
+    props: [
+      { text: "prop" },
+      { text: "prop" },
+      { text: "prop" },
+      { text: "prop" }
+    ]
   }),
   methods: {
     setTrips: function(trips) {
@@ -16,6 +32,9 @@ export default {
     },
     setProps: function(props) {
       this.props = props;
+    },
+    setTab: function(tab) {
+      this.tab = tab;
     }
   },
   components: {},
@@ -50,12 +69,25 @@ export default {
     </div>
     <div class="main">
       <div class="menu">
-        <div v-bind:class="{ active: tab === 'profile', option: true }">Профиль</div>
-        <div v-bind:class="{ active: tab === 'props', option: true }">Мои предложения</div>
-        <div v-bind:class="{ active: tab === 'trips', option: true }">Мои путешествия</div>
+        <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
+        <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="setTab('props')">Мои предложения</div>
+        <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
       </div>
       <div class="content">
-
+        <div class="profile" v-if="tab === 'profile'">
+          <div class="param"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" v-model="user.email" disabled /></div>
+          <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled /></div>
+        </div>
+        <div class="list" v-if="tab === 'props'">
+          <template v-for="(prop) in props">
+            <div :key="prop.id" class="prop">{{ prop.text }}</div>
+          </template>
+        </div>
+        <div class="list" v-if="tab === 'trips'">
+          <template v-for="(trip) in trips">
+            <div :key="trip.id" class="trip">{{ trip.text }}</div>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -95,9 +127,30 @@ export default {
 
 .active {
   opacity: 1;
+  box-shadow: #888;
 }
 
 .option:last-child {
   border: none;
+}
+
+.param {
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0;
+}
+
+.inputField {
+  color: #000;
+  width: 50%;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.label {
+  width: 50%;
 }
 </style>

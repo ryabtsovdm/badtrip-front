@@ -102,7 +102,8 @@ const store = new Vuex.Store({
   },
   getters: {
     getTrips: state => state.trips,
-    getProps: state => state.props
+    getProps: state => state.props,
+    getUser: state => state.user
   }
 });
 
