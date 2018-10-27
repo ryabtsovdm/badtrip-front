@@ -21,21 +21,22 @@ export default {
     stage: "promo"
   }),
   methods: {
-    setStage: val => {
+    setStage: function(val) {
       this.stage = val;
     },
-    fetchData: async () => {
+    fetchData: async function() {
       try {
         const { data } = await axios({
-          url: "http://badtripapi.altarta.ru/api/trips/getlist"
+          url: "http://cv15621.tmweb.ru/api/trips/getlist"
         });
-        this.$store.dispatch("SET_TRIPS", { trips: data });
+        console.log(this);
+        this.$store.dispatch("SET_TRIPS", data);
       } catch (error) {
         console.log("Error while loading trips list", error);
       }
     }
   },
-  created() {
+  beforeCreate() {
     this.fetchData();
   }
 };
@@ -43,7 +44,7 @@ export default {
 
 <template>
   <div class="home">
-    <Masthead v-if="stage === 'promo'"  @registerClicked="setStage('reg')" @loginClicked="setStage('login')"/>
+    <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
     <Registration v-if="stage === 'reg'" />
     <Login v-if="stage === 'login'" />
   </div>

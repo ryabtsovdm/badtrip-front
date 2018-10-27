@@ -3,17 +3,18 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
-    stage: "login"
+    stage: "login",
+    trips: []
   },
   actions: {
-    setTrips({ commit }, { trips }) {
+    setTrips({ commit }, trips) {
       commit("SET_TRIPS", trips);
     }
   },
   mutations: {
-    SET_TRIPS: (state, trips) => {
+    SET_TRIPS(state, trips) {
       state.trips = trips;
     }
   },
@@ -21,3 +22,5 @@ export default new Vuex.Store({
     getTrips: state => state.trips
   }
 });
+
+export default store;
