@@ -25,7 +25,7 @@ export default {
       this.stage = val;
     },
     logIn: function() {
-      this.setStage("promo");
+      this.$router.push("/dashboard");
     },
     ...mapActions({
       setTrips: "setTrips",
