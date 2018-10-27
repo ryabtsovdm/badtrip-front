@@ -7,11 +7,13 @@ Vue.use(Vuex);
 const host = "http://cv15621.tmweb.ru";
 const SET_TRIPS = "SET_TRIPS";
 const SET_PROPS = "SET_PROPS";
+const SET_USER = "SET_USER";
 
 const store = new Vuex.Store({
   state: {
     trips: [],
-    props: []
+    props: [],
+    user: {}
   },
   mutations: {
     [SET_TRIPS](state, trips) {
@@ -19,6 +21,9 @@ const store = new Vuex.Store({
     },
     [SET_PROPS](state, props) {
       state.props = props;
+    },
+    [SET_USER](state, user) {
+      state.user = user;
     }
   },
   actions: {
@@ -50,8 +55,7 @@ const store = new Vuex.Store({
     },
     /* eslint-disable-line */ async login(
       { commit },
-      { email, password },
-      onSuccess
+      { email, password, onSuccess }
     ) {
       try {
         const { data } = await axios({
@@ -68,6 +72,7 @@ const store = new Vuex.Store({
         });
 
         localStorage.setItem("token", data.token);
+        commit(SET_USER, data.user);
         onSuccess();
       } catch (error) {
         /* eslint-disable-line */ console.log("Error while login", error);
@@ -75,8 +80,7 @@ const store = new Vuex.Store({
     },
     /* eslint-disable-line */ async register(
       { commit },
-      { email, password },
-      onSuccess
+      { email, password, onSuccess }
     ) {
       try {
         const { data } = await axios({

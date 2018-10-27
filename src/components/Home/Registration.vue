@@ -7,11 +7,11 @@ export default {
     ...mapActions({
       register: "register"
     }),
-    onClickRegisterButton() {
-      this.$emit("registerClicked");
+    onSuccessRegister() {
+      this.$emit("loggedIn");
     },
-    onClickCancelButton() {
-      this.$emit("cancelClicked");
+    onCancelReg() {
+      this.$emit("cancelReg");
     },
     onSubmit(event) {
       event.preventDefault();
@@ -19,7 +19,11 @@ export default {
         target: { email, password }
       } = event;
 
-      this.register({ email: email.value, password: password.value });
+      this.register({
+        email: email.value,
+        password: password.value,
+        onSuccess: this.onSuccessRegister
+      });
     }
   }
 };
@@ -30,8 +34,8 @@ export default {
     <div class="textBox"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" /></div>
     <div class="textBox"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" /></div>
     <div class="buttons">
-      <button class="button submit" v-on:click="onClickRegisterButton" type="submit">Зарегистрироваться</button>
-      <button class="button cancel" v-on:click="onClickCancelButton" type="button">Отмена</button></div>
+      <button class="button submit" type="submit">Зарегистрироваться</button>
+      <button class="button cancel" v-on:click="onCancelReg" type="button">Отмена</button></div>
   </form>
 </template>
 

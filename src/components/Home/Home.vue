@@ -24,6 +24,9 @@ export default {
     setStage: function(val) {
       this.stage = val;
     },
+    logIn: function() {
+      this.setStage("promo");
+    },
     ...mapActions({
       setTrips: "setTrips",
       setProps: "setProps"
@@ -39,8 +42,8 @@ export default {
 <template>
   <div class="home">
     <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
-    <Registration v-if="stage === 'reg'" />
-    <Login v-if="stage === 'login'" />
+    <Registration v-if="stage === 'reg'" @cancelReg="setStage('promo')" />
+    <Login v-if="stage === 'login'" @cancelLogin="setStage('promo')" @loggedIn="logIn()" />
     <HomeTrips v-if="isLoggedIn" />
     <HomeProps v-if="isLoggedIn" />
   </div>

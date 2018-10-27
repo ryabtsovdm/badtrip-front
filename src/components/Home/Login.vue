@@ -10,8 +10,8 @@ export default {
     onSuccessLogin() {
       this.$emit("loggedIn");
     },
-    onClickCancelButton() {
-      this.$emit("cancelClicked");
+    onCancelLogin() {
+      this.$emit("cancelLogin");
     },
     onSubmit(event) {
       event.preventDefault();
@@ -19,10 +19,11 @@ export default {
         target: { email, password }
       } = event;
 
-      this.login(
-        { email: email.value, password: password.value },
-        this.onSuccessLogin
-      );
+      this.login({
+        email: email.value,
+        password: password.value,
+        onSuccess: this.onSuccessLogin
+      });
     }
   }
 };
@@ -34,7 +35,7 @@ export default {
     <div class="textBox"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" /></div>
     <div class="buttons">
       <button class="button submit" type="submit">Войти</button>
-      <button class="button cancel" v-on:click="onClickCancelButton" type="button">Отмена</button></div>
+      <button class="button cancel" v-on:click="onCancelLogin" type="button">Отмена</button></div>
   </form>
 </template>
 
