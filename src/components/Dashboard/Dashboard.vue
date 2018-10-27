@@ -25,7 +25,7 @@ export default {
     setTab: function(tab) {
       this.tab = tab;
     },
-    create: function() {
+    createNew: function() {
       if (this.tab === "trips") {
         this.$router.push("/new/trip");
       } else {
@@ -83,7 +83,7 @@ export default {
             <div :key="trip.id" class="trip">{{ trip.text }}</div>
           </template>
         </div>
-        <div class="createButton" v-if="tab !== 'profile'" v-on:click="create()">
+        <div class="createButton" v-if="tab !== 'profile'" v-on:click="createNew()">
           Создать
         </div>
       </div>
