@@ -17,16 +17,9 @@ export default {
     HomeProps
   },
   data: () => ({
-    stage: "promo"
+    stage: "promo",
+    isLoggedIn: true
   }),
-  computed: {
-    trips() {
-      return this.$store.getters.getTrips;
-    },
-    props() {
-      return this.$store.getters.getProps;
-    }
-  },
   methods: {
     setStage: function(val) {
       this.stage = val;
@@ -48,6 +41,8 @@ export default {
     <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
     <Registration v-if="stage === 'reg'" />
     <Login v-if="stage === 'login'" />
+    <HomeTrips v-if="isLoggedIn" />
+    <HomeProps v-if="isLoggedIn" />
   </div>
 </template>
 
