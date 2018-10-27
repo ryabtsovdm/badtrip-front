@@ -7,24 +7,13 @@ export default {
   name: "dashboard",
   computed: {
     user() {
-      console.log(this.$store.getters.getUser);
       return this.$store.getters.getUser;
     }
   },
   data: () => ({
     tab: "profile",
-    trips: [
-      { text: "trip" },
-      { text: "trip" },
-      { text: "trip" },
-      { text: "trip" }
-    ],
-    props: [
-      { text: "prop" },
-      { text: "prop" },
-      { text: "prop" },
-      { text: "prop" }
-    ]
+    trips: [],
+    props: []
   }),
   methods: {
     setTrips: function(trips) {
@@ -35,9 +24,15 @@ export default {
     },
     setTab: function(tab) {
       this.tab = tab;
+    },
+    create: function() {
+      if (this.tab === "trips") {
+        this.$router.push("/new/trip");
+      } else {
+        this.$router.push("/new/prop");
+      }
     }
   },
-  components: {},
   created() {
     const Authorization = localStorage.getItem("token");
 
@@ -48,7 +43,7 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ trips }) => this.setTrips(trips));
+    }).then(({ data }) => this.setTrips(data.trips));
 
     axios({
       url: `${host}/api/projects/my`,
@@ -57,7 +52,7 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ projects }) => this.setProps(projects));
+    }).then(({ data }) => this.setProps(data.projects));
   }
 };
 </script>
@@ -87,6 +82,9 @@ export default {
           <template v-for="(trip) in trips">
             <div :key="trip.id" class="trip">{{ trip.text }}</div>
           </template>
+        </div>
+        <div class="createButton" v-if="tab !== 'profile'" v-on:click="create()">
+          Создать
         </div>
       </div>
     </div>
@@ -152,5 +150,13 @@ export default {
 
 .label {
   width: 50%;
+}
+
+.createButton {
+  background-color: ghostwhite;
+  padding: 0.8rem;
+  color: lightcoral;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 </style>

@@ -72,6 +72,7 @@ const store = new Vuex.Store({
         });
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         commit(SET_USER, data.user);
         onSuccess();
       } catch (error) {
@@ -94,6 +95,8 @@ const store = new Vuex.Store({
         });
 
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        commit(SET_USER, data.user);
         onSuccess();
       } catch (error) {
         /* eslint-disable-line */ console.log("Error while login", error);
