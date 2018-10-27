@@ -1,6 +1,7 @@
-
 <script>
 import axios from "axios";
+
+const host = "http://cv15621.tmweb.ru";
 
 export default {
   name: "dashboard",
@@ -18,26 +19,26 @@ export default {
     }
   },
   components: {},
-  async created() {
-    try {
-      const { data } = await axios({
-        url: `${host}/api/register`,
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json"
-        },
-        data: {
-          email,
-          password
-        }
-      });
+  created() {
+    const Authorization = localStorage.getItem("token");
 
-      localStorage.setItem("token", data.token);
-      onSuccess();
-    } catch (error) {
-      /* eslint-disable-line */ console.log("Error while login", error);
-    }
+    axios({
+      url: `${host}/api/trips/my`,
+      headers: {
+        "content-type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Authorization}`
+      }
+    }).then(({ trips }) => this.setTrips(trips));
+
+    axios({
+      url: `${host}/api/projects/my`,
+      headers: {
+        "content-type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${Authorization}`
+      }
+    }).then(({ projects }) => this.setProps(projects));
   }
 };
 </script>
