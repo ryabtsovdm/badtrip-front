@@ -2,23 +2,27 @@
 export default {
   name: "homeProps",
   computed: {
-    trips() {
-      return this.$store.getters.getTrips;
+    props() {
+      return this.$store.getters.getProps.projects;
     }
   }
 };
 </script>
 
 <template>
-    <div class="homeProps">
-        v-for="trip in trips"
-        :key="trip.id">
-        {{ trip.text }}
-    </div>
+  <div class="homeProps">
+    <h1 class="tripsHeader">Все заказы</h1>
+    <template v-for="(prop) in props">
+      <div :key="prop.id" class="prop">{{ prop.text }}</div>
+    </template>
+  </div>
 </template>
 
 <style>
 .homeProps {
   font-family: "PT Sans", sans-serif;
+}
+
+.prop {
 }
 </style>

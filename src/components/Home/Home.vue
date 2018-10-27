@@ -5,7 +5,6 @@ import Registration from "./Registration.vue";
 import Login from "./Login.vue";
 import HomeTrips from "./HomeTrips.vue";
 import HomeProps from "./HomeProps.vue";
-import axios from "axios";
 import { mapActions } from "vuex";
 
 export default {
@@ -18,26 +17,21 @@ export default {
     HomeProps
   },
   data: () => ({
-    stage: "promo"
+    stage: "promo",
+    isLoggedIn: true
   }),
   methods: {
     setStage: function(val) {
       this.stage = val;
     },
-    fetchData: async function() {
-      try {
-        const { data } = await axios({
-          url: "http://cv15621.tmweb.ru/api/trips/getlist"
-        });
-        console.log(this);
-        this.$store.dispatch("SET_TRIPS", data);
-      } catch (error) {
-        console.log("Error while loading trips list", error);
-      }
-    }
+    ...mapActions({
+      setTrips: "setTrips",
+      setProps: "setProps"
+    })
   },
-  beforeCreate() {
-    this.fetchData();
+  created() {
+    this.setTrips();
+    this.setProps();
   }
 };
 </script>
@@ -47,6 +41,8 @@ export default {
     <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
     <Registration v-if="stage === 'reg'" />
     <Login v-if="stage === 'login'" />
+    <HomeTrips v-if="isLoggedIn" />
+    <HomeProps v-if="isLoggedIn" />
   </div>
 </template>
 
