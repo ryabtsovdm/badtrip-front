@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 import App from "./App.vue";
 import Home from "./components/Home/Home.vue";
-import Dashboard from "./components/Dashboard.vue";
+import Dashboard from "./components/Dashboard/Dashboard.vue";
 import Trips from "./components/Trips.vue";
 import Props from "./components/Props.vue";
 import New from "./components/New.vue";
