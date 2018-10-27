@@ -15,7 +15,7 @@ export default {
 <template>
   <div class="masthead">
     <div class="main">
-      <img class="cat" src="./images/cat.jpg" />
+      <img class="cat" src="./images/cat.jpg" alt="" />
       <div class="promo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis nisi maxime culpa suscipit tempore, ea distinctio iusto molestias, eos omnis aut ratione vel! Cupiditate, reiciendis asperiores rem, voluptatem reprehenderit explicabo similique inventore saepe nihil deleniti, rerum tenetur ea aliquam minus consectetur. Amet consequuntur, necessitatibus sed cumque quisquam quae expedita voluptate labore iure a asperiores reiciendis soluta, impedit dolorem nostrum natus culpa unde! Totam, quae dolore repellat earum quis neque illum sint fugiat unde. Quidem error distinctio itaque aliquid, obcaecati odio soluta aliquam alias ducimus deleniti illo. Praesentium molestias sequi eaque vel, dolorem fugit atque voluptas magni debitis, odio ex repellat!</div>
     </div>
     <button class="promoButton" type="button" v-on:click="onClickRegisterButton">Регистрация</button>
