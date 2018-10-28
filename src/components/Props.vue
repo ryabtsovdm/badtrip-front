@@ -2,16 +2,30 @@
 <script>
 export default {
   name: "props",
-  components: {}
+  computed: {
+    props() {
+      return this.$store.getters.getProps.projects;
+    }
+  }
 };
 </script>
 
 <template>
-  <div id="props">
+  <div class="props">
+    <template v-for="(prop) in props">
+      <div :key="prop.id" class="prop">
+        <div class="prop__title">
+          {{ prop.title }}
+        </div>
+        <div class="prop__text">
+          {{ prop.text }}
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <style>
-#props {
+.props {
 }
 </style>
