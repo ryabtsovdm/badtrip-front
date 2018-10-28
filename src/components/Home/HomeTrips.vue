@@ -24,14 +24,20 @@ export default {
       );
       myMap.behaviors.disable("scrollZoom");
 
-      Array.from(this.trips).forEach(({ lat, lng }) => {
+      Array.from(this.trips).forEach(({ lat, lng, text, id }) => {
         const placemark = new window.ymaps.Placemark(
           [lat, lng],
-          {},
+          {
+            balloonContentHeader: "Описание",
+            balloonContentBody: text,
+            balloonContentFooter: `<a href="trips/${id}">Подробнее</a>`
+          },
           {
             preset: "islands#blueAirportIcon",
+
             balloonCloseButton: false,
-            hideIconOnBalloonOpen: false
+            hideIconOnBalloonOpen: false,
+            hint: text
           }
         );
 
