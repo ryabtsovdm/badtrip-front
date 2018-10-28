@@ -1,10 +1,7 @@
 <script>
 export default {
   name: "Prop",
-  props: ["title", "text"],
-  data: () => ({
-    text: ""
-  })
+  props: ["title", "text"]
 };
 </script>
 
@@ -22,14 +19,11 @@ export default {
 
 <style scoped>
 .prop {
-  display: flex;
-
   width: 100%;
   height: 200px;
 }
 
 .image {
-  height: 100%;
 }
 
 .title {

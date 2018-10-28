@@ -5,6 +5,7 @@ import Prop from "./Prop.vue";
 
 export default {
   name: "props",
+  components: { Prop },
   computed: {
     props() {
       return this.$store.getters.getProps;
@@ -31,5 +32,9 @@ export default {
 
 <style>
 .props {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
 }
 </style>
