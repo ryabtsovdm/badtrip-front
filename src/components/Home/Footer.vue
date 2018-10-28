@@ -1,50 +1,29 @@
 <script>
-import Logo from "./Logo.vue";
-
 export default {
-  name: "masthead",
-  methods: {
-    onClickRegisterButton() {
-      this.$emit("registerClicked");
-    },
-    onClickLoginButton() {
-      this.$emit("loginClicked");
-    }
-  },
+  name: "footer",
 };
 </script>
 
 <template>
-  <section class="masthead">
+  <footer class="footer">
     <div class="container">
-      <Logo />
-      <div class="masthead__promo">
-        <div class="masthead__promo-line--1">Нищий, но любишь фоточки?</div>
-        <div class="masthead__promo-line--2">Тебе к нам.</div>
-      </div>
+      <p>2018</p>
+      <p>Prototype is sozdan by <a href="https://github.com/ryabtsovdm/" target="_blank">@ryabtsovdm</a> i <a href="https://github.com/mishantrop/" target="_blank">@mishantrop</a></p>
     </div>
-    <div>
-      <button class="promoButton promoButton--registration" type="button" v-on:click="onClickRegisterButton">
-        Регистрация
-      </button>
-      <button class="promoButton promoButton--login" type="button" v-on:click="onClickLoginButton">
-        Вход
-      </button>
-    </div>
-  </section>
+  </footer>
 </template>
 
 <style>
-.masthead {
-  background-color: #fff;
-  font-family: "PT Sans", sans-serif;
+
+.footer {
+  border-bottom: 1px solid #666;
+  display: block;
   padding: 2rem 0;
 }
 
 .masthead__logo {
-  background-size: contain;
   display: block;
-  height: 200px;
+  max-height: 200px;
   max-width: 100%;
   margin: 0 auto 20px;
 }

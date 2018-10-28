@@ -5,16 +5,18 @@ import Registration from "./Registration.vue";
 import Login from "./Login.vue";
 import HomeTrips from "./HomeTrips.vue";
 import HomeProps from "./HomeProps.vue";
+import Footer from "./Footer.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "home",
   components: {
+    Footer,
+    HomeTrips,
+    HomeProps,
+    Login,
     Masthead,
     Registration,
-    Login,
-    HomeTrips,
-    HomeProps
   },
   data: () => ({
     stage: "promo",
@@ -29,7 +31,7 @@ export default {
     },
     ...mapActions({
       setTrips: "setTrips",
-      setProps: "setProps"
+      setProps: "setProps",
     })
   },
   created() {
@@ -41,15 +43,30 @@ export default {
 
 <template>
   <div class="home">
-    <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
-    <Registration v-if="stage === 'reg'" @cancelReg="setStage('promo')" />
-    <Login v-if="stage === 'login'" @cancelLogin="setStage('promo')" @loggedIn="logIn()" />
-    <HomeTrips v-if="isLoggedIn" />
-    <HomeProps v-if="isLoggedIn" />
+    <Masthead
+      v-if="stage === 'promo'"
+      @registerClicked="setStage('reg')"
+      @loginClicked="setStage('login')"
+    />
+    <Registration
+      v-if="stage === 'reg'"
+      @cancelReg="setStage('promo')"
+    />
+    <Login
+      v-if="stage === 'login'"
+      @cancelLogin="setStage('promo')"
+      @loggedIn="logIn()"
+    />
+    <HomeTrips />
+    <HomeProps />
+    <Footer />
   </div>
 </template>
 
 <style>
-.home {
+.container {
+  max-width: 999px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 </style>
