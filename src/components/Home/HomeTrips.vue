@@ -3,7 +3,7 @@ export default {
   name: "homeTrips",
   computed: {
     trips() {
-      return this.$store.getters.getTrips.trips;
+      return this.$store.getters.getTrips;
     }
   },
   created() {

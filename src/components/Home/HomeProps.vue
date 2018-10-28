@@ -1,9 +1,12 @@
 <script>
+import Prop from "../Prop.vue";
+
 export default {
   name: "homeProps",
+  components: { Prop },
   computed: {
     props() {
-      return this.$store.getters.getProps.projects;
+      return this.$store.getters.getProps;
     }
   }
 };
@@ -20,14 +23,7 @@ export default {
       </div>
       <div>
         <template v-for="(prop) in props">
-          <div :key="prop.id" class="prop">
-            <div class="prop__title">
-              {{ prop.title }}
-            </div>
-            <div class="prop__text">
-              {{ prop.text }}
-            </div>
-          </div>
+          <Prop :key="prop.id" class="prop" v-bind:prop="prop"></Prop>
         </template>
       </div>
     </div>
