@@ -14,10 +14,10 @@ export default {
   },
   components: {
     Footer,
-    Logo,
+    Logo
   },
   data: () => ({
-    trip: null,
+    trip: null
   }),
   methods: {
     setTrip: function(trip) {
@@ -54,6 +54,7 @@ export default {
         );
 
         myMap.behaviors.disable("scrollZoom");
+        myMap.behaviors.disable("multiTouch");
 
         const placemark = new window.ymaps.Placemark(
           [lat, lng],
@@ -62,7 +63,7 @@ export default {
             preset: "islands#blueAirportIcon",
 
             balloonCloseButton: false,
-            hideIconOnBalloonOpen: false,
+            hideIconOnBalloonOpen: false
             // hint: text,
           }
         );
@@ -75,20 +76,20 @@ export default {
 </script>
 
 <template>
-    <div>
-      <header>
-        <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
-          <Logo />
-        </a>
-      </header>
-      <div id="map" />
-      <div class="container">
-        <div v-if="trip !== null" class="trip-page__text">
-          {{ trip.text }}
-        </div>
+  <div>
+    <header>
+      <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
+        <Logo />
+      </a>
+    </header>
+    <div id="map" />
+    <div class="container">
+      <div v-if="trip !== null" class="trip-page__text">
+        {{ trip.text }}
       </div>
-      <Footer />
     </div>
+    <Footer />
+  </div>
 </template>
 
 

@@ -69,7 +69,9 @@ export default {
           searchControlProvider: "yandex#search"
         }
       );
+
       myMap.behaviors.disable("scrollZoom");
+      myMap.behaviors.disable("multiTouch");
 
       myMap.events.add("click", e => {
         myMap.geoObjects.remove(this.placemark);

@@ -22,7 +22,9 @@ export default {
           searchControlProvider: "yandex#search"
         }
       );
+
       myMap.behaviors.disable("scrollZoom");
+      myMap.behaviors.disable("multiTouch");
 
       Array.from(this.trips).forEach(({ lat, lng, text, id }) => {
         const placemark = new window.ymaps.Placemark(
