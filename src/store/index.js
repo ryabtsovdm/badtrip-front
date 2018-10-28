@@ -7,12 +7,16 @@ Vue.use(Vuex);
 const host = "http://cv15621.tmweb.ru";
 const SET_TRIPS = "SET_TRIPS";
 const SET_PROPS = "SET_PROPS";
+const SET_MY_TRIPS = "SET_TRIPS";
+const SET_MY_PROPS = "SET_PROPS";
 const SET_USER = "SET_USER";
 
 const store = new Vuex.Store({
   state: {
     trips: [],
     props: [],
+    myTrips: [],
+    myProps: [],
     user: {}
   },
   mutations: {
@@ -21,6 +25,12 @@ const store = new Vuex.Store({
     },
     [SET_PROPS](state, props) {
       state.props = props;
+    },
+    [SET_MY_TRIPS](state, myTrips) {
+      state.myTrips = myTrips;
+    },
+    [SET_MY_PROPS](state, myProps) {
+      state.myProps = myProps;
     },
     [SET_USER](state, user) {
       state.user = user;
@@ -102,11 +112,19 @@ const store = new Vuex.Store({
       } catch (error) {
         /* eslint-disable-line */ console.log("Error while login", error);
       }
+    },
+    setMyTrips({ commit }, myTrips) {
+      commit(SET_MY_TRIPS, myTrips);
+    },
+    setMyProps({ commit }, myProps) {
+      commit(SET_MY_PROPS, myProps);
     }
   },
   getters: {
     getTrips: state => state.trips,
     getProps: state => state.props,
+    getMyTrips: state => state.myTrips,
+    getMyProps: state => state.myProps,
     getUser: state => state.user
   }
 });

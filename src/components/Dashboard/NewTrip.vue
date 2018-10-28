@@ -69,7 +69,7 @@ export default {
         const [lat, lng] = coords;
         this.setMarker({ lat, lng });
 
-        this.placemark = new window.Placemark(
+        this.placemark = new window.ymaps.Placemark(
           coords,
           {},
           {

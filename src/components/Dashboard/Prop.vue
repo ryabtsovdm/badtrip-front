@@ -7,7 +7,10 @@
 
 <script>
 export default {
-  name: "Prop"
+  name: "Prop",
+  data: () => ({
+    text: ""
+  })
 };
 </script>
 

@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import { mapActions } from "vuex";
 
 const host = "http://cv15621.tmweb.ru";
 
@@ -8,20 +9,24 @@ export default {
   computed: {
     user() {
       return this.$store.getters.getUser;
+    },
+    myTrips() {
+      return this.$store.getters.getMyTrips;
+    },
+    myProps() {
+      return this.$store.getters.getMyProps;
     }
   },
   data: () => ({
-    tab: "profile",
-    trips: [],
-    props: []
+    tab: "profile"
+    // trips: [],
+    // props: []
   }),
   methods: {
-    setTrips: function(trips) {
-      this.trips = trips;
-    },
-    setProps: function(props) {
-      this.props = props;
-    },
+    ...mapActions({
+      setMyTrips: "setMyTrips",
+      setMyProps: "setMyProps"
+    }),
     setTab: function(tab) {
       this.tab = tab;
     },
@@ -35,6 +40,7 @@ export default {
   },
   created() {
     const Authorization = localStorage.getItem("token");
+    /** */ console.log(Authorization);
 
     axios({
       url: `${host}/api/trips/my`,
@@ -43,7 +49,9 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ data }) => this.setTrips(data.trips));
+    }).then(({ data }) => {
+      return this.setMyTrips(data.trips);
+    });
 
     axios({
       url: `${host}/api/projects/my`,
@@ -52,7 +60,7 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ data }) => this.setProps(data.projects));
+    }).then(({ data }) => this.setMyProps(data.projects));
   }
 };
 </script>
@@ -74,12 +82,12 @@ export default {
           <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled required /></div>
         </div>
         <div class="list" v-if="tab === 'props'">
-          <template v-for="(prop) in props">
+          <template v-for="(prop) in myProps">
             <div :key="prop.id" class="prop">{{ prop.text }}</div>
           </template>
         </div>
         <div class="list" v-if="tab === 'trips'">
-          <template v-for="(trip) in trips">
+          <template v-for="(trip) in myTrips">
             <div :key="trip.id" class="trip">{{ trip.text }}</div>
           </template>
         </div>

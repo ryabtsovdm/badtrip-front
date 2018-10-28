@@ -12,7 +12,7 @@ export default {
       login: "login"
     }),
     onSuccessLogin() {
-      this.$emit("loggedIn");
+      this.$router.push("/dashboard");
     },
     onCancelLogin() {
       this.$emit("cancelLogin");
