@@ -7,7 +7,7 @@ const host = "http://cv15621.tmweb.ru";
 export default {
   name: "newtrip",
   components: {
-    Logo,
+    Logo
   },
   data: () => ({
     marker: {
@@ -15,7 +15,7 @@ export default {
       lng: 45.45
     },
     tab: "newtrip",
-    placemark: null,
+    placemark: null
   }),
   methods: {
     setTab: function(tab) {
@@ -102,11 +102,11 @@ export default {
       </a>
     </header>
     <div class="container">
-        <nav class="menu">
-          <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="$router.push('/dashboard')">Профиль</div>
-          <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="$router.push('/dashboard')">Мои предложения</div>
-          <div v-bind:class="{ active: tab === 'newtrip', option: true }" v-on:click="$router.push('/dashboard')">Мои путешествия</div>
-        </nav>
+      <nav class="menu">
+        <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="$router.push('/dashboard')">Профиль</div>
+        <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="$router.push('/dashboard')">Мои предложения</div>
+        <div v-bind:class="{ active: tab === 'newtrip', option: true }" v-on:click="$router.push('/dashboard')">Мои путешествия</div>
+      </nav>
     </div>
     <h1 class="pageheader">Новое путешествие</h1>
     <div id="map"></div>
@@ -189,7 +189,6 @@ export default {
 }
 
 .inputField {
-
 }
 
 .label {
