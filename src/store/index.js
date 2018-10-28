@@ -63,10 +63,7 @@ const store = new Vuex.Store({
         );
       }
     },
-    /* eslint-disable-line */ async login(
-      { commit },
-      { email, password, onSuccess }
-    ) {
+    async login({ commit }, { email, password, onSuccess }) {
       try {
         const { data } = await axios({
           url: `${host}/api/login`,

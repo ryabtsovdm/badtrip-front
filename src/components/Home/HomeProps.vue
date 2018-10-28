@@ -1,14 +1,9 @@
 <script>
-import Prop from "../Prop.vue";
+import Props from "../Props.vue";
 
 export default {
   name: "homeProps",
-  components: { Prop },
-  computed: {
-    props() {
-      return this.$store.getters.getProps;
-    }
-  }
+  components: { Props }
 };
 </script>
 
@@ -21,11 +16,7 @@ export default {
           Кажется, эти люди готовы платить за фоточки. Мдауш.
         </p>
       </div>
-      <div>
-        <template v-for="(prop) in props">
-          <Prop :key="prop.id" class="prop" v-bind:prop="prop"></Prop>
-        </template>
-      </div>
+      <Props />
     </div>
   </section>
 </template>

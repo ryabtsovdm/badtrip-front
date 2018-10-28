@@ -57,7 +57,7 @@ export default {
         Authorization: `Bearer ${Authorization}`
       }
     }).then(({ data }) => {
-      console.log(data);
+      console.log(data.projects);
       this.setMyProps(data.projects);
     });
   }

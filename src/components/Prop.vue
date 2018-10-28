@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-  <div class="prop">
+  <div class="prop" v-on:click="$router.push(`props/${prop.id}`)">
     <img src="" alt="" class="image">
     <div class="content">
       <p class="title">{{prop.title}}</p>

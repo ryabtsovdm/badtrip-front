@@ -39,6 +39,14 @@ body {
   padding: 0 2rem;
   width: 100%;
 }
+.pageheader {
+  display: block;
+  font-family: "PT Sans", sans-serif;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
 #map {
   width: 100%;
   height: 500px;

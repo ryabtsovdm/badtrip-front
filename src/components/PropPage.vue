@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import Logo from "./Home/Logo.vue";
+import Footer from "./Home/Footer.vue";
 
 const host = "http://cv15621.tmweb.ru";
 
@@ -10,8 +12,12 @@ export default {
       return this.$route.params.id;
     }
   },
+  components: {
+    Footer,
+    Logo,
+  },
   data: () => ({
-    prop: {}
+    prop: null,
   }),
   methods: {
     setProp: function(prop) {
@@ -37,15 +43,30 @@ export default {
 </script>
 
 <template>
-    <div class="prop">
+  <div>
+    <header>
+      <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
+        <Logo />
+      </a>
+    </header>
+    <div class="container">
         <img src="" alt="" class="image">
         <div class="content">
-            <p class="title">{{prop.title}}</p>
-            <p class="description">{{prop.text}}</p>
+          <h1 v-if="prop !== null" class="pageheader">
+            {{ prop.title }}
+          </h1>
+          <div v-if="prop !== null" class="project-page__text">
+            {{ prop.text }}
+          </div>
         </div>
     </div>
+    <Footer />
+  </div>
 </template>
 
 
 <style scoped>
+.project-page__text {
+  padding: 2rem 0;
+}
 </style>
