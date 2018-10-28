@@ -28,7 +28,7 @@ export default {
         const placemark = new window.ymaps.Placemark(
           [lat, lng],
           {
-            balloonContentBody: `<span style="font-size: 16px;>${text}</span>`,
+            balloonContentBody: `<span style="font-size: 16px;">${text}</span>`,
             balloonContentFooter: `<a href="trips/${id}">Подробнее</a>`
           },
           {
