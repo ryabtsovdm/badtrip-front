@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="trips">
     <template v-for="(trip) in trips">
-      <Trip :key="trip.id" v-bind:title="trip.title" v-bind:text="trip.text"></Trip>
+      <Trip :key="trip.id" v-bind:trip="trip"></Trip>
     </template>
   </div>
 </template>

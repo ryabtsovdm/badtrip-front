@@ -1,7 +1,7 @@
 <script>
 export default {
   name: "Trip",
-  props: ["title", "text"]
+  props: ["trip"]
 };
 </script>
 
@@ -9,8 +9,8 @@ export default {
     <div class="trip">
         <img src="" alt="" class="image">
         <div class="content">
-            <p class="title">{{title}}</p>
-            <p class="description">{{text}}</p>
+            <p class="title">{{trip.title}}</p>
+            <p class="description">{{trip.text}}</p>
         </div>
     </div>
 </template>

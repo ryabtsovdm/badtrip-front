@@ -25,7 +25,7 @@ export default {
 <template>
   <div class="props">
     <template v-for="(prop) in props">
-      <Prop :key="prop.id" v-bind:title="prop.title" v-bind:text="prop.text"></Prop>
+      <Prop :key="prop.id" v-bind:prop="prop"></Prop>
     </template>
   </div>
 </template>
