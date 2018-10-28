@@ -12,6 +12,7 @@ export default {
   },
   computed: {
     user() {
+      console.log(this.$store.getters.getUser);
       return this.$store.getters.getUser;
     },
     myProps() {
