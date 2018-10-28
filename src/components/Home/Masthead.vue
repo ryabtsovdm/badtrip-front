@@ -11,6 +11,9 @@ export default {
       this.$emit("loginClicked");
     }
   },
+  components: {
+    Login,
+  },
 };
 </script>
 
