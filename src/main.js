@@ -10,6 +10,8 @@ import Trips from "./components/Trips.vue";
 import Props from "./components/Props.vue";
 import NewTrip from "./components/Dashboard/NewTrip.vue";
 import NewProp from "./components/Dashboard/NewProp.vue";
+import TripPage from "./components/TripPage.vue";
+import PropPage from "./components/PropPage.vue";
 
 import store from "./store";
 
@@ -19,7 +21,9 @@ const routes = [
   { path: "/trips", component: Trips },
   { path: "/props", component: Props },
   { path: "/new/trip", component: NewTrip },
-  { path: "/new/prop", component: NewProp }
+  { path: "/new/prop", component: NewProp },
+  { path: "/trips/:id", component: TripPage },
+  { path: "/props/:id", component: PropPage }
 ];
 
 const router = new VueRouter({

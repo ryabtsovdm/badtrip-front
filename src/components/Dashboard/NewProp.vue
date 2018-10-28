@@ -102,8 +102,9 @@ export default {
 
 .menu {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  font-family: "PT Sans", sans-serif;
 }
 
 .option {
