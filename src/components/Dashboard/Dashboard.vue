@@ -2,13 +2,17 @@
 import axios from "axios";
 import Logo from "../Home/Logo.vue";
 import { mapActions } from "vuex";
+import Prop from "../Prop.vue";
+import Trip from "../Trip.vue";
 
 const host = "http://cv15621.tmweb.ru";
 
 export default {
   name: "dashboard",
   components: {
-    Logo
+    Logo,
+    Prop,
+    Trip
   },
   computed: {
     user() {
@@ -76,7 +80,7 @@ export default {
         <nav class="menu">
           <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
           <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="setTab('props')">Мои предложения</div>
-          <div v-bind:class="{ active: tab === 'newtrip', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
+          <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
         </nav>
         <div class="content">
           <div class="profile" v-if="tab === 'profile'">
@@ -85,12 +89,12 @@ export default {
           </div>
           <div class="list" v-if="tab === 'props'">
             <template v-for="(prop) in myProps">
-              <div :key="prop.id" class="prop">{{ prop.text }}</div>
+              <Prop :key="prop.id" v-bind:prop="prop"></Prop>
             </template>
           </div>
           <div class="list" v-if="tab === 'trips'">
             <template v-for="(trip) in myTrips">
-              <div :key="trip.id" class="trip">{{ trip.text }}</div>
+              <Trip :key="trip.id" v-bind:trip="trip"></Trip>
             </template>
           </div>
           <a href="/new/prop" class="createButton" v-if="tab === 'props'" v-on:click.prevent="$router.push('/new/prop')">
@@ -163,6 +167,7 @@ export default {
 }
 
 .createButton {
+  display: inline-block;
   background-color: #fff;
   border: 1px solid #ff00a8;
   border-radius: 4px;
@@ -178,5 +183,9 @@ export default {
 .createButton:hover {
   background-color: #ff00a8;
   color: #fff;
+}
+
+.list {
+  padding: 0 0 2rem;
 }
 </style>
