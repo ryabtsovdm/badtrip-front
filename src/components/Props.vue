@@ -1,6 +1,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import Prop from "./Prop.vue";
 
 export default {
   name: "props",
@@ -23,14 +24,7 @@ export default {
 <template>
   <div class="props">
     <template v-for="(prop) in props">
-      <div :key="prop.id" class="prop">
-        <div class="prop__title">
-          {{ prop.title }}
-        </div>
-        <div class="prop__text">
-          {{ prop.text }}
-        </div>
-      </div>
+      <Prop :key="prop.id" v-bind:title="prop.title" v-bind:text="prop.text"></Prop>
     </template>
   </div>
 </template>

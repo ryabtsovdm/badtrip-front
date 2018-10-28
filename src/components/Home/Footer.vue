@@ -13,7 +13,7 @@ export default {
   </footer>
 </template>
 
-<style>
+<style scoped>
 .footer {
   border-bottom: 1px solid #666;
   display: block;

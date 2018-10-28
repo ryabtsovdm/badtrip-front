@@ -10,7 +10,6 @@
   "dependencies": {
     "axios": "^0.18.0",
     "moment": "^2.22.2",
-    "postcss-nested": "^4.1.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1",
     "vue-yandex-maps": "^0.7.15",
@@ -39,8 +38,7 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {},
-      "postcss-nested": {}
+      "autoprefixer": {}
     }
   },
   "browserslist": [

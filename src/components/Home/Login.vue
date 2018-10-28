@@ -59,7 +59,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .login {
   padding: 2rem 0;
 }

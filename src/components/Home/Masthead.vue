@@ -26,7 +26,7 @@ export default {
         <div class="masthead__promo-line--2">Тебе к нам.</div>
       </div>
     </div>
-    <div>
+    <div class="container" style="text-align: center;">
       <button class="promoButton promoButton--registration" type="button" v-on:click="onClickRegisterButton">
         Регистрация
       </button>
@@ -37,7 +37,7 @@ export default {
   </section>
 </template>
 
-<style>
+<style scoped>
 .masthead {
   background-color: #fff;
   font-family: "PT Sans", sans-serif;

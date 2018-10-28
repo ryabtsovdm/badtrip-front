@@ -1,6 +1,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import Trip from "./Trip.vue";
 
 export default {
   name: "props",
