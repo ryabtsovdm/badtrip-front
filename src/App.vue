@@ -50,5 +50,6 @@ body {
 #map {
   width: 100%;
   height: 500px;
+  background-color: #eee;
 }
 </style>

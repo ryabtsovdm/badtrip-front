@@ -23,6 +23,10 @@ export default {
   padding: 1rem;
 }
 
+.prop:hover {
+  background-color: #f5f5f5;
+}
+
 .image {
 }
 

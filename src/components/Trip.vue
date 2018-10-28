@@ -22,6 +22,10 @@ export default {
   padding: 1rem;
 }
 
+.trip:hover {
+  background-color: #f5f5f5;
+}
+
 .image {
 }
 

@@ -119,15 +119,13 @@ export default {
 }
 
 .main {
-  display: flex;
   padding: 0 2rem;
   font-size: 1rem;
 }
 
 .menu {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .option {
@@ -187,5 +185,9 @@ export default {
 
 .list {
   padding: 0 0 2rem;
+}
+
+.content {
+  width: 100%;
 }
 </style>

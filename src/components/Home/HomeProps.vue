@@ -30,7 +30,7 @@ export default {
   </section>
 </template>
 
-<style>
+<style scope>
 .home-projects {
   background-color: #eee;
   font-family: "PT Sans", sans-serif;
