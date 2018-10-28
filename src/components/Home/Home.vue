@@ -26,9 +26,6 @@ export default {
     setStage: function(val) {
       this.stage = val;
     },
-    logIn: function() {
-      this.$router.push("/dashboard");
-    },
     ...mapActions({
       setTrips: "setTrips",
       setProps: "setProps"
@@ -45,7 +42,7 @@ export default {
   <div class="home">
     <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
     <Registration v-if="stage === 'reg'" @cancelReg="setStage('promo')" />
-    <Login v-if="stage === 'login'" @cancelLogin="setStage('promo')" @loggedIn="logIn()" />
+    <Login v-if="stage === 'login'" @cancelLogin="setStage('promo')" />
     <HomeTrips />
     <HomeProps />
     <Footer />

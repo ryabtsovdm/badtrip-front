@@ -8,7 +8,7 @@ export default {
       register: "register"
     }),
     onSuccessRegister() {
-      this.$emit("loggedIn");
+      this.$router.push("/dashboard");
     },
     onCancelReg() {
       this.$emit("cancelReg");
@@ -16,12 +16,13 @@ export default {
     onSubmit(event) {
       event.preventDefault();
       const {
-        target: { email, password }
+        target: { email, password, login }
       } = event;
 
       this.register({
         email: email.value,
         password: password.value,
+        login: login.value,
         onSuccess: this.onSuccessRegister
       });
     }
@@ -34,6 +35,10 @@ export default {
     <div class="container">
       <h1 class="pageheader">Регистрация</h1>
       <form class="registration-form" v-on:submit="onSubmit">
+        <div class="textBox">
+          <label class="label">Логин:</label>
+          <input class="inputField" type="text" name="login" required />
+        </div>
         <div class="textBox">
           <label class="label">E-mail:</label>
           <input class="inputField" type="email" name="email" required />
