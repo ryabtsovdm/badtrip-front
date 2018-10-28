@@ -20,7 +20,7 @@ export default {
 }
 html,
 body {
-  background-color: #eee;
+  background-color: #fff;
   margin: 0;
   padding: 0;
 }
@@ -32,7 +32,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 4rem;
+  color: #222;
+}
+.container {
+  max-width: 999px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
 }
 </style>

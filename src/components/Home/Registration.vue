@@ -30,60 +30,108 @@ export default {
 </script>
 
 <template>
-  <form class="registration" v-on:submit="onSubmit">
-    <div class="textBox"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" /></div>
-    <div class="textBox"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" /></div>
-    <div class="buttons">
-      <button class="button submit" type="submit">Зарегистрироваться</button>
-      <button class="button cancel" v-on:click="onCancelReg" type="button">Отмена</button></div>
-  </form>
+  <div class="registration">
+    <div class="container">
+      <h1 class="pageheader">Регистрация</h1>
+      <form class="registration-form" v-on:submit="onSubmit">
+        <div class="textBox">
+          <label class="label">E-mail:</label>
+          <input class="inputField" type="email" name="email" />
+        </div>
+        <div class="textBox">
+          <label class="label">Пароль:</label>
+          <input class="inputField" type="password" name="password" />
+        </div>
+        <div class="registration__buttons">
+          <button class="registration-button registration-button--submit" type="submit">
+            Зарегистрироваться
+          </button>
+          <button class="registration-button registration-button--cancel" v-on:click="onCancelReg" type="button">
+            Отмена
+            </button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 <style>
-.registration {
+.pageheader {
+  display: block;
   font-family: "PT Sans", sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
 
+.registration {
+  padding: 2rem 0;
+}
+.registration-form {
+  align-items: center;
+  display: flex;
+  font-family: "PT Sans", sans-serif;
+  flex-direction: column;
   width: 100%;
 }
 
 .textBox {
-  width: 80%;
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 0.3rem 0;
+  width: 80%;
 }
 
 .inputField {
-  width: 50%;
   border: 1px solid #ddd;
   padding: 0.5rem;
   border-radius: 0.3rem;
+  width: 50%;
 }
 
 .label {
   width: 50%;
 }
 
-.buttons {
+.registration__buttons {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 1rem;
-  width: 80%;
 }
 
-.button {
-  padding: 0.2rem;
-  font-size: 1.3rem;
+.registration-button {
+  background-color: #fff;
+  border: 1px solid #ff00a8;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s linear, color 0.2s linear;
 }
 
-.submit {
+.registration-button--submit {
+  margin: 0 1rem 0 0;
 }
 
-.cancel {
+.registration-button--submit:hover {
+  background-color: #ff00a8;
+  color: #fff;
+}
+
+.registration-button--cancel {
+  background-color: #eee;
+  border: 1px solid #aaa;
+  color: #666;
+  margin: 0 0 0 1rem;
+}
+
+.registration-button--cancel:hover {
+  background-color: #ddd;
+  color: #888;
 }
 </style>
