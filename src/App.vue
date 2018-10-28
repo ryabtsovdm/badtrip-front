@@ -39,4 +39,8 @@ body {
   padding: 0 2rem;
   width: 100%;
 }
+#map {
+  width: 100%;
+  height: 500px;
+}
 </style>

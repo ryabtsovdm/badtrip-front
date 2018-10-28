@@ -1,6 +1,9 @@
 <script>
+import Trip from "../Trip.vue";
+
 export default {
   name: "homeTrips",
+  components: { Trip },
   computed: {
     trips() {
       return this.$store.getters.getTrips;
@@ -31,6 +34,7 @@ export default {
             hideIconOnBalloonOpen: false
           }
         );
+
         myMap.geoObjects.add(placemark);
       });
     });

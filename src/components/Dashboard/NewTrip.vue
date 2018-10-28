@@ -13,6 +13,9 @@ export default {
     placemark: null
   }),
   methods: {
+    setTab: function(tab) {
+      this.tab = tab;
+    },
     setMarker(marker) {
       this.marker = marker;
     },
@@ -69,7 +72,7 @@ export default {
         const [lat, lng] = coords;
         this.setMarker({ lat, lng });
 
-        this.placemark = new window.ymaps.Placemark(
+        this.placemark = new window.Placemark(
           coords,
           {},
           {
@@ -100,12 +103,92 @@ export default {
   </form>
 </template>
 
-<style>
-#map {
-  width: 100%;
-  height: 500px;
+<style scoped>
+.newtrip {
 }
 
-.newtrip {
+.newtrip-form {
+}
+
+.newtrip-form textarea,
+.newtrip-form input {
+  width: 100%;
+}
+.newtrip-form textarea {
+  width: 100%;
+}
+
+.main {
+  display: flex;
+  padding: 0 2rem;
+  font-size: 1rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.option {
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+.option:hover {
+  background-color: #eee;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.option:last-child {
+  border: none;
+}
+
+.textBox {
+  margin: 0 0 1rem;
+}
+
+.param {
+  width: 400px;
+  margin: 0 0 0.5rem;
+}
+
+.inputField {
+  color: #000;
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+.label {
+  display: block;
+  margin: 0 0 0.2rem;
+}
+
+.button {
+  background-color: #fff;
+  border: 1px solid #ff00a8;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.button--submit {
+  margin: 0 1rem 0 0;
+}
+
+.button--submit:hover {
+  background-color: #ff00a8;
+  color: #fff;
 }
 </style>

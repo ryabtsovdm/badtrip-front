@@ -10,6 +10,7 @@ export default {
     Logo
   },
   computed: {
+    tab: "newtrip",
     user() {
       return this.$store.getters.getUser;
     }
@@ -74,7 +75,7 @@ export default {
         <nav class="menu">
           <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
           <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="setTab('props')">Мои предложения</div>
-          <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
+          <div v-bind:class="{ active: tab === 'newtrip', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
         </nav>
         <div class="content">
           <div class="profile" v-if="tab === 'profile'">
