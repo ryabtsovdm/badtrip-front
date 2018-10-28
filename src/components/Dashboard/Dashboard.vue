@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 import Logo from "../Home/Logo.vue";
+import { mapActions } from "vuex";
 
 const host = "http://cv15621.tmweb.ru";
 
@@ -14,6 +15,7 @@ export default {
       return this.$store.getters.getUser;
     },
     myProps() {
+      /** */ console.log("myProps computed", this.$store.getters.myProps);
       return this.$store.getters.myProps;
     },
     myTrips() {
@@ -24,12 +26,10 @@ export default {
     tab: "profile"
   }),
   methods: {
-    setTrips: function(trips) {
-      this.trips = trips;
-    },
-    setProps: function(props) {
-      this.props = props;
-    },
+    ...mapActions({
+      setMyTrips: "setMyTrips",
+      setMyProps: "setMyProps"
+    }),
     setTab: function(tab) {
       this.tab = tab;
     }
@@ -44,7 +44,10 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ data }) => this.setTrips(data.trips));
+    }).then(({ data }) => {
+      console.log(data);
+      this.setMyTrips(data.trips);
+    });
 
     axios({
       url: `${host}/api/projects/my`,
@@ -53,7 +56,10 @@ export default {
         Accept: "application/json",
         Authorization: `Bearer ${Authorization}`
       }
-    }).then(({ data }) => this.setProps(data.projects));
+    }).then(({ data }) => {
+      console.log(data);
+      this.setMyProps(data.projects);
+    });
   }
 };
 </script>

@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import Logo from "./Home/Logo.vue";
+import Footer from "./Home/Footer.vue";
 
 const host = "http://cv15621.tmweb.ru";
 
@@ -10,8 +12,12 @@ export default {
       return this.$route.params.id;
     }
   },
+  components: {
+    Footer,
+    Logo,
+  },
   data: () => ({
-    trip: {}
+    trip: null,
   }),
   methods: {
     setTrip: function(trip) {
@@ -31,7 +37,7 @@ export default {
     }).then(({ data }) => {
       this.setTrip(data);
 
-      const { lat, lng } = data;
+      const { lat, lng, text } = data;
       /** */ console.log(data);
 
       window.ymaps.ready(() => {
@@ -57,7 +63,7 @@ export default {
 
             balloonCloseButton: false,
             hideIconOnBalloonOpen: false,
-            hint: text
+            // hint: text,
           }
         );
 
@@ -70,10 +76,24 @@ export default {
 
 <template>
     <div>
-        <div id="map" />
+      <header>
+        <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
+          <Logo />
+        </a>
+      </header>
+      <div id="map" />
+      <div class="container">
+        <div v-if="trip !== null" class="trip-page__text">
+          {{ trip.text }}
+        </div>
+      </div>
+      <Footer />
     </div>
 </template>
 
 
 <style scoped>
+.trip-page__text {
+  padding: 2rem 0;
+}
 </style>
