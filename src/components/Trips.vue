@@ -5,6 +5,7 @@ import Trip from "./Trip.vue";
 
 export default {
   name: "props",
+  components: { Trip },
   computed: {
     trips() {
       return this.$store.getters.getTrips;
@@ -24,19 +25,16 @@ export default {
 <template>
   <div class="trips">
     <template v-for="(trip) in trips">
-      <div :key="trip.id" class="trip">
-        <div class="trip__title">
-          {{ trip.title }}
-        </div>
-        <div class="trip__text">
-          {{ trip.text }}
-        </div>
-      </div>
+      <Trip :key="trip.id" v-bind:title="trip.title" v-bind:text="trip.text"></Trip>
     </template>
   </div>
 </template>
 
 <style>
 .trips {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
 }
 </style>
