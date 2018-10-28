@@ -36,11 +36,11 @@ export default {
       <form class="registration-form" v-on:submit="onSubmit">
         <div class="textBox">
           <label class="label">E-mail:</label>
-          <input class="inputField" type="email" name="email" />
+          <input class="inputField" type="email" name="email" required />
         </div>
         <div class="textBox">
           <label class="label">Пароль:</label>
-          <input class="inputField" type="password" name="password" />
+          <input class="inputField" type="password" name="password" required />
         </div>
         <div class="registration__buttons">
           <button class="registration-button registration-button--submit" type="submit">

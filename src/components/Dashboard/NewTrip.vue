@@ -89,11 +89,11 @@ export default {
 
   <form class="newtrip" v-on:submit="onSubmit">
     <div id="map"></div>
-    <div class="textBox"><label class="label">Минимальная цена: </label><input class="inputField" type="number" name="from" /></div>
-    <div class="textBox"><label class="label">Максимальная цена: </label><input class="inputField" type="number" name="to" /></div>
-    <div class="textBox"><label class="label">Дата начала: </label><input class="inputField" type="date" name="start" value="2018-10-28" /></div>
-    <div class="textBox"><label class="label">Дата завершения: </label><input class="inputField" type="date" name="end" value="2018-10-29" /></div>
-    <div class="textBox"><label class="label">Комментарий: </label><textarea class="text" name="text" placeholder="Комментарий" /></div>
+    <div class="textBox"><label class="label">Минимальная цена: </label><input class="inputField" type="number" name="from" required /></div>
+    <div class="textBox"><label class="label">Максимальная цена: </label><input class="inputField" type="number" name="to" required /></div>
+    <div class="textBox"><label class="label">Дата начала: </label><input class="inputField" type="date" name="start" value="2018-10-28" required /></div>
+    <div class="textBox"><label class="label">Дата завершения: </label><input class="inputField" type="date" name="end" value="2018-10-29" required /></div>
+    <div class="textBox"><label class="label">Комментарий: </label><textarea class="text" name="text" placeholder="Комментарий" required /></div>
     <div class="buttons">
       <button class="button submit" type="submit">Сохранить</button>
       <button class="button cancel" v-on:click="onCancelCreate" type="button">Отмена</button></div>

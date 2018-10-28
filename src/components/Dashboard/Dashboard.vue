@@ -70,8 +70,8 @@ export default {
       </div>
       <div class="content">
         <div class="profile" v-if="tab === 'profile'">
-          <div class="param"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" v-model="user.email" disabled /></div>
-          <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled /></div>
+          <div class="param"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" v-model="user.email" disabled required /></div>
+          <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled required /></div>
         </div>
         <div class="list" v-if="tab === 'props'">
           <template v-for="(prop) in props">
