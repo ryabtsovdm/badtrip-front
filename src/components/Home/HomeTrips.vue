@@ -45,7 +45,7 @@ export default {
 <template>
   <section class="home-trips">
     <div class="container">
-      <h2 class="home-trips__header">Все путешествия</h2>
+      <h2 class="home-trips__header" v-on:click="$router.push('/trips')">Все путешествия</h2>
       <div class="home-trips__intro">
         <p>
           На карте ты найдёшь путешественника, который разнообразит ваш унылый инстаграмчик.

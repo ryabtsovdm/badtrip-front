@@ -15,7 +15,7 @@ export default {
 <template>
   <section class="home-projects">
     <div class="container">
-      <h2 class="home-projects__header">Все заказы</h2>
+      <h2 class="home-projects__header" v-on:click="$router.push('/props')">Все заказы</h2>
       <div class="home-projects__intro">
         <p>
           Кажется, эти люди готовы платить за фоточки. Мдауш.

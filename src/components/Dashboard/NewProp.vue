@@ -50,16 +50,16 @@ export default {
 <template>
   <div class="newprop">
     <header>
-      <a href="/" title="Перейти на главную страницу">
+      <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
         <Logo />
       </a>
     </header>
     <div class="container">
       <div class="main">
         <nav class="menu">
-          <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
-          <div v-bind:class="{ active: tab === 'newprop', option: true }" v-on:click="setTab('props')">Мои предложения</div>
-          <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
+          <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="$router.push('/dashboard')">Профиль</div>
+          <div v-bind:class="{ active: tab === 'newprop', option: true }" v-on:click="$router.push('/dashboard')">Мои предложения</div>
+          <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="$router.push('/dashboard')">Мои путешествия</div>
         </nav>
         <div class="content">
           <form v-on:submit="onSubmit">

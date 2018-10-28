@@ -10,15 +10,18 @@ export default {
     Logo
   },
   computed: {
-    tab: "newtrip",
     user() {
       return this.$store.getters.getUser;
+    },
+    myProps() {
+      return this.$store.getters.myProps;
+    },
+    myTrips() {
+      return this.$store.getters.myTrips;
     }
   },
   data: () => ({
-    tab: "profile",
-    trips: [],
-    props: []
+    tab: "profile"
   }),
   methods: {
     setTrips: function(trips) {
@@ -29,14 +32,6 @@ export default {
     },
     setTab: function(tab) {
       this.tab = tab;
-    },
-    createNew: function(e) {
-      e.preventDefault();
-      if (this.tab === "trips") {
-        this.$router.push("/new/trip");
-      } else {
-        this.$router.push("/new/prop");
-      }
     }
   },
   created() {
@@ -66,7 +61,7 @@ export default {
 <template>
   <div class="dashboard">
     <header>
-      <a href="/" title="Перейти на главную страницу">
+      <a href="/" title="Перейти на главную страницу" v-on:click.prevent="$router.push('/')">
         <Logo />
       </a>
     </header>
@@ -92,8 +87,11 @@ export default {
               <div :key="trip.id" class="trip">{{ trip.text }}</div>
             </template>
           </div>
-          <a href="/new/prop" class="createButton" v-if="tab !== 'profile'" v-on:click="createNew()">
-            Создать
+          <a href="/new/prop" class="createButton" v-if="tab === 'props'" v-on:click.prevent="$router.push('/new/prop')">
+            Создать предложение
+          </a>
+          <a href="/new/trip" class="createButton" v-if="tab === 'trips'" v-on:click.prevent="$router.push('/new/trip')">
+            Создать путешествие
           </a>
         </div>
       </div>
