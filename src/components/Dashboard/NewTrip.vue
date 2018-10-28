@@ -1,16 +1,18 @@
 
 <script>
 import axios from "axios";
-import moment from "moment";
 const host = "http://cv15621.tmweb.ru";
 
 export default {
   name: "newtrip",
   data: () => ({
-    lat: 59.59,
-    lng: 45.45
+    marker: {
+      lat: 59.59,
+      lng: 45.45
+    }
   }),
   methods: {
+    setMarker() {},
     onSubmit(event) {
       event.preventDefault();
       const {
@@ -18,7 +20,7 @@ export default {
       } = event;
 
       const Authorization = localStorage.getItem("token");
-      const { lat, lng } = this;
+      const { lat, lng } = this.marker;
 
       axios({
         url: `${host}/api/trips/create`,
@@ -41,13 +43,19 @@ export default {
     },
     onCancelCreate() {
       this.$router.go(-1);
+    },
+    onMapClick(event) {
+      /** */ console.log(event);
     }
   }
 };
 </script>
 
 <template>
-  <form class="newtrip" v-on:submit="onSubmit">
+  <form class="newtrip" v-on:submit="onSubmit" v-on:click="onMapClick">
+    <yandex-map :coords="[59, 45]" :zoom="6" style="width: 100%; height: 500px">
+      <ymap-marker :markerId="1" marker-type="placemark" :coords="[parseInt(marker.lat), parseInt(marker.lng)]" :clickable="true" :draggable="true" />
+    </yandex-map>
     <div class="textBox"><label class="label">Минимальная цена: </label><input class="inputField" type="number" name="from" /></div>
     <div class="textBox"><label class="label">Максимальная цена: </label><input class="inputField" type="number" name="to" /></div>
     <div class="textBox"><label class="label">Дата начала: </label><input class="inputField" type="date" name="start" value="2018-10-28" /></div>

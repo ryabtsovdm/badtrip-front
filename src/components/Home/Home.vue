@@ -5,6 +5,8 @@ import Registration from "./Registration.vue";
 import Login from "./Login.vue";
 import HomeTrips from "./HomeTrips.vue";
 import HomeProps from "./HomeProps.vue";
+import Footer from "./Footer.vue";
+
 import { mapActions } from "vuex";
 
 export default {
@@ -13,12 +15,12 @@ export default {
     Masthead,
     Registration,
     Login,
+    Footer,
     HomeTrips,
     HomeProps
   },
   data: () => ({
-    stage: "promo",
-    isLoggedIn: true
+    stage: "promo"
   }),
   methods: {
     setStage: function(val) {
@@ -44,12 +46,17 @@ export default {
     <Masthead v-if="stage === 'promo'" @registerClicked="setStage('reg')" @loginClicked="setStage('login')" />
     <Registration v-if="stage === 'reg'" @cancelReg="setStage('promo')" />
     <Login v-if="stage === 'login'" @cancelLogin="setStage('promo')" @loggedIn="logIn()" />
-    <HomeTrips v-if="isLoggedIn" />
-    <HomeProps v-if="isLoggedIn" />
+    <HomeTrips />
+    <HomeProps />
+    <Footer />
+
   </div>
 </template>
 
 <style>
-.home {
+.container {
+  max-width: 999px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 </style>

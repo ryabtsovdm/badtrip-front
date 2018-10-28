@@ -1,4 +1,6 @@
 <script>
+import Logo from "./Logo.vue";
+
 export default {
   name: "masthead",
   methods: {
@@ -8,24 +10,62 @@ export default {
     onClickLoginButton() {
       this.$emit("loginClicked");
     }
+  },
+  components: {
+    Logo
   }
 };
 </script>
 
 <template>
-  <div class="masthead">
-    <div class="main">
-      <img class="cat" src="./images/cat.jpg" alt="" />
-      <div class="promo">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nobis nisi maxime culpa suscipit tempore, ea distinctio iusto molestias, eos omnis aut ratione vel! Cupiditate, reiciendis asperiores rem, voluptatem reprehenderit explicabo similique inventore saepe nihil deleniti, rerum tenetur ea aliquam minus consectetur. Amet consequuntur, necessitatibus sed cumque quisquam quae expedita voluptate labore iure a asperiores reiciendis soluta, impedit dolorem nostrum natus culpa unde! Totam, quae dolore repellat earum quis neque illum sint fugiat unde. Quidem error distinctio itaque aliquid, obcaecati odio soluta aliquam alias ducimus deleniti illo. Praesentium molestias sequi eaque vel, dolorem fugit atque voluptas magni debitis, odio ex repellat!</div>
+  <section class="masthead">
+    <div class="container">
+      <Logo />
+      <div class="masthead__promo">
+        <div class="masthead__promo-line--1">Нищий, но любишь фоточки?</div>
+        <div class="masthead__promo-line--2">Тебе к нам.</div>
+      </div>
     </div>
-    <button class="promoButton" type="button" v-on:click="onClickRegisterButton">Регистрация</button>
-    <button class="promoButton" type="button" v-on:click="onClickLoginButton">Вход</button>
-  </div>
+    <div>
+      <button class="promoButton promoButton--registration" type="button" v-on:click="onClickRegisterButton">
+        Регистрация
+      </button>
+      <button class="promoButton promoButton--login" type="button" v-on:click="onClickLoginButton">
+        Вход
+      </button>
+    </div>
+  </section>
 </template>
 
 <style>
 .masthead {
+  background-color: #fff;
   font-family: "PT Sans", sans-serif;
+  padding: 2rem 0;
+}
+
+.masthead__logo {
+  background-size: contain;
+  display: block;
+  height: 200px;
+  max-width: 100%;
+  margin: 0 auto 20px;
+}
+
+.masthead__promo {
+  color: #222;
+  padding: 0 0 2rem;
+  text-align: center;
+}
+
+.masthead__promo-line--1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.masthead__promo-line--2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
 }
 
 .main {
@@ -35,25 +75,28 @@ export default {
   margin-bottom: 5rem;
 }
 
-.cat {
-  border-radius: 5rem;
-  width: 50%;
-}
-
-.promo {
-  padding: 1rem;
-}
-
 .promoButton {
-  display: inline;
-
-  padding: 1rem;
-
-  font-size: 2rem;
-  font-weight: 700;
-
-  border: 1px solid #ccc;
+  background-color: #fff;
+  border: 2px solid #ff00a8;
   border-radius: 0.5rem;
+  cursor: pointer;
+  display: inline;
+  font-size: 2rem;
+  font-weight: 400;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.promoButton:hover {
+  background-color: #ff00a8;
+  color: #fff;
+}
+
+.promoButton--registration {
+}
+
+.promoButton--login {
 }
 
 .promoButton:last-child {
