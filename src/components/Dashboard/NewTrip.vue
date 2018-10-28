@@ -9,10 +9,13 @@ export default {
     marker: {
       lat: 59.59,
       lng: 45.45
-    }
+    },
+    placemark: null
   }),
   methods: {
-    setMarker() {},
+    setMarker(marker) {
+      this.marker = marker;
+    },
     onSubmit(event) {
       event.preventDefault();
       const {
@@ -43,19 +46,49 @@ export default {
     },
     onCancelCreate() {
       this.$router.go(-1);
-    },
-    onMapClick(event) {
-      /** */ console.log(event);
     }
+  },
+  created() {
+    ymaps.ready(() => {
+      var myMap = new ymaps.Map(
+        "map",
+        {
+          center: [59.59, 45.45],
+          zoom: 11
+        },
+        {
+          balloonMaxWidth: 200,
+          searchControlProvider: "yandex#search"
+        }
+      );
+
+      myMap.events.add("click", e => {
+        myMap.geoObjects.remove(this.placemark);
+
+        var coords = e.get("coords");
+        const [lat, lng] = coords;
+        this.setMarker({ lat, lng });
+
+        this.placemark = new ymaps.Placemark(
+          coords,
+          {},
+          {
+            preset: "islands#blueAirportIcon",
+            balloonCloseButton: false,
+            hideIconOnBalloonOpen: false
+          }
+        );
+        myMap.geoObjects.add(this.placemark);
+      });
+    });
   }
 };
 </script>
 
 <template>
-  <form class="newtrip" v-on:submit="onSubmit" v-on:click="onMapClick">
-    <yandex-map :coords="[59, 45]" :zoom="6" style="width: 100%; height: 500px">
-      <ymap-marker :markerId="1" marker-type="placemark" :coords="[parseInt(marker.lat), parseInt(marker.lng)]" :clickable="true" :draggable="true" />
-    </yandex-map>
+
+  <form class="newtrip" v-on:submit="onSubmit">
+    <div id="map"></div>
     <div class="textBox"><label class="label">Минимальная цена: </label><input class="inputField" type="number" name="from" /></div>
     <div class="textBox"><label class="label">Максимальная цена: </label><input class="inputField" type="number" name="to" /></div>
     <div class="textBox"><label class="label">Дата начала: </label><input class="inputField" type="date" name="start" value="2018-10-28" /></div>
@@ -68,6 +101,11 @@ export default {
 </template>
 
 <style>
+#map {
+  width: 100%;
+  height: 500px;
+}
+
 .newtrip {
 }
 </style>
