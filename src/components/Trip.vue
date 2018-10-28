@@ -20,7 +20,7 @@ export default {
 <style scoped>
 .trip {
   width: 100%;
-  height: 200px;
+  padding: 1rem;
 }
 
 .image {
