@@ -49,8 +49,8 @@ export default {
     }
   },
   created() {
-    ymaps.ready(() => {
-      var myMap = new ymaps.Map(
+    window.ymaps.ready(() => {
+      var myMap = new window.ymaps.Map(
         "map",
         {
           center: [59.59, 45.45],
@@ -69,7 +69,7 @@ export default {
         const [lat, lng] = coords;
         this.setMarker({ lat, lng });
 
-        this.placemark = new ymaps.Placemark(
+        this.placemark = new window.Placemark(
           coords,
           {},
           {

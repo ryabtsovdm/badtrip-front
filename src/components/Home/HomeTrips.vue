@@ -7,12 +7,12 @@ export default {
     }
   },
   created() {
-    ymaps.ready(() => {
-      var myMap = new ymaps.Map(
+    window.ymaps.ready(() => {
+      let myMap = new window.ymaps.Map(
         "map",
         {
           center: [59.59, 45.45],
-          zoom: 11
+          zoom: 5
         },
         {
           balloonMaxWidth: 200,
@@ -20,6 +20,19 @@ export default {
         }
       );
       myMap.behaviors.disable("scrollZoom");
+
+      Array.from(this.trips).forEach(({ lat, lng }) => {
+        const placemark = new window.ymaps.Placemark(
+          [lat, lng],
+          {},
+          {
+            preset: "islands#blueAirportIcon",
+            balloonCloseButton: false,
+            hideIconOnBalloonOpen: false
+          }
+        );
+        myMap.geoObjects.add(placemark);
+      });
     });
   }
 };
