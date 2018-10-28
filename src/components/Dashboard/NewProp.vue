@@ -55,6 +55,7 @@ export default {
       </a>
     </header>
     <div class="container">
+    <h1 class="pageheader">Новый заказ</h1>
       <div class="main">
         <nav class="menu">
           <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="$router.push('/dashboard')">Профиль</div>
@@ -95,9 +96,12 @@ export default {
 }
 
 .main {
-  display: flex;
   padding: 0 2rem;
   font-size: 1rem;
+}
+
+.content {
+  padding: 2rem 0;
 }
 
 .menu {

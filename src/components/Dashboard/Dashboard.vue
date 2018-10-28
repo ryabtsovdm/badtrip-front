@@ -15,11 +15,10 @@ export default {
       return this.$store.getters.getUser;
     },
     myProps() {
-      /** */ console.log("myProps computed", this.$store.getters.myProps);
-      return this.$store.getters.myProps;
+      return this.$store.getters.getMyProps;
     },
     myTrips() {
-      return this.$store.getters.myTrips;
+      return this.$store.getters.getMyTrips;
     }
   },
   data: () => ({
