@@ -1,11 +1,21 @@
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "props",
   computed: {
     props() {
-      return this.$store.getters.getProps.projects;
+      return this.$store.getters.getProps;
     }
+  },
+  methods: {
+    ...mapActions({
+      setProps: "setProps"
+    })
+  },
+  created() {
+    this.setProps();
   }
 };
 </script>

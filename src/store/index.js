@@ -7,8 +7,8 @@ Vue.use(Vuex);
 const host = "http://cv15621.tmweb.ru";
 const SET_TRIPS = "SET_TRIPS";
 const SET_PROPS = "SET_PROPS";
-const SET_MY_TRIPS = "SET_TRIPS";
-const SET_MY_PROPS = "SET_PROPS";
+const SET_MY_TRIPS = "SET_MY_TRIPS";
+const SET_MY_PROPS = "SET_MY_PROPS";
 const SET_USER = "SET_USER";
 
 const store = new Vuex.Store({
@@ -42,7 +42,7 @@ const store = new Vuex.Store({
         const { data } = await axios({
           url: `${host}/api/trips/getlist`
         });
-        commit(SET_TRIPS, data);
+        commit(SET_TRIPS, data.trips);
       } catch (error) {
         /* eslint-disable-line */ console.log(
           "Error while loading trips list",
@@ -55,7 +55,7 @@ const store = new Vuex.Store({
         const { data } = await axios({
           url: `${host}/api/projects/getlist`
         });
-        commit(SET_PROPS, data);
+        commit(SET_PROPS, data.projects);
       } catch (error) {
         /* eslint-disable-line */ console.log(
           "Error while loading props list",
