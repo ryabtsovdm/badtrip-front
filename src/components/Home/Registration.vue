@@ -60,7 +60,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .pageheader {
   display: block;
   font-family: "PT Sans", sans-serif;

@@ -39,8 +39,7 @@
   },
   "postcss": {
     "plugins": {
-      "autoprefixer": {},
-      "postcss-nested": {}
+      "autoprefixer": {}
     }
   },
   "browserslist": [

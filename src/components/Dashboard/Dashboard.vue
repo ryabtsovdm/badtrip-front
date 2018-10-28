@@ -1,10 +1,14 @@
 <script>
 import axios from "axios";
+import Logo from "../Home/Logo.vue";
 
 const host = "http://cv15621.tmweb.ru";
 
 export default {
   name: "dashboard",
+  components: {
+    Logo,
+  },
   computed: {
     user() {
       return this.$store.getters.getUser;
@@ -25,7 +29,8 @@ export default {
     setTab: function(tab) {
       this.tab = tab;
     },
-    createNew: function() {
+    createNew: function(e) {
+      e.preventDefault();
       if (this.tab === "trips") {
         this.$router.push("/new/trip");
       } else {
@@ -59,56 +64,55 @@ export default {
 
 <template>
   <div class="dashboard">
-    <div class="header">
-      <!-- Имя пользователя и иконка -->
-    </div>
-    <div class="main">
-      <div class="menu">
-        <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
-        <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="setTab('props')">Мои предложения</div>
-        <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
-      </div>
-      <div class="content">
-        <div class="profile" v-if="tab === 'profile'">
-          <div class="param"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" v-model="user.email" disabled required /></div>
-          <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled required /></div>
-        </div>
-        <div class="list" v-if="tab === 'props'">
-          <template v-for="(prop) in props">
-            <div :key="prop.id" class="prop">{{ prop.text }}</div>
-          </template>
-        </div>
-        <div class="list" v-if="tab === 'trips'">
-          <template v-for="(trip) in trips">
-            <div :key="trip.id" class="trip">{{ trip.text }}</div>
-          </template>
-        </div>
-        <div class="createButton" v-if="tab !== 'profile'" v-on:click="createNew()">
-          Создать
+    <header>
+      <a href="/" title="Перейти на главную страницу">
+        <Logo />
+      </a>
+    </header>
+    <div class="container">
+      <div class="main">
+        <nav class="menu">
+          <div v-bind:class="{ active: tab === 'profile', option: true }" v-on:click="setTab('profile')">Профиль</div>
+          <div v-bind:class="{ active: tab === 'props', option: true }" v-on:click="setTab('props')">Мои предложения</div>
+          <div v-bind:class="{ active: tab === 'trips', option: true }" v-on:click="setTab('trips')">Мои путешествия</div>
+        </nav>
+        <div class="content">
+          <div class="profile" v-if="tab === 'profile'">
+            <div class="param"><label class="label">E-mail: </label><input class="inputField" type="email" name="email" v-model="user.email" disabled required /></div>
+            <div class="param"><label class="label">Пароль: </label><input class="inputField" type="password" name="password" disabled required /></div>
+          </div>
+          <div class="list" v-if="tab === 'props'">
+            <template v-for="(prop) in myProps">
+              <div :key="prop.id" class="prop">{{ prop.text }}</div>
+            </template>
+          </div>
+          <div class="list" v-if="tab === 'trips'">
+            <template v-for="(trip) in myTrips">
+              <div :key="trip.id" class="trip">{{ trip.text }}</div>
+            </template>
+          </div>
+          <a href="/new/prop" class="createButton" v-if="tab !== 'profile'" v-on:click="createNew()">
+            Создать
+          </a>
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<style>
+<style scoped>
 .dashboard {
-  background-image: linear-gradient(to right, yellow, violet);
-  width: 80%;
-  margin: 0 auto;
+  font-family: "PT Sans", sans-serif;
 }
 
-.header {
-  width: 4rem;
+.profile {
+  padding: 0 2rem;
 }
 
 .main {
   display: flex;
-  flex-direction: row;
-  justify-content: stretch;
   padding: 0 2rem;
-
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .menu {
@@ -118,14 +122,18 @@ export default {
 }
 
 .option {
-  border-bottom: 1px solid #888;
-  padding: 0.3rem 0.5rem;
-  opacity: 0.5;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin: 0 0 0.5rem;
+  text-transform: uppercase;
+}
+.option:hover {
+  background-color: #eee;
 }
 
 .active {
-  opacity: 1;
-  box-shadow: #888;
+  font-weight: bold;
 }
 
 .option:last-child {
@@ -134,29 +142,36 @@ export default {
 
 .param {
   width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.3rem 0;
+  margin: 0 0 0.5rem;
 }
 
 .inputField {
   color: #000;
-  width: 50%;
   border: 1px solid #ddd;
   padding: 0.5rem;
   border-radius: 0.3rem;
 }
 
 .label {
-  width: 50%;
+  display: block;
+  margin: 0 0 0.2rem;
 }
 
 .createButton {
-  background-color: ghostwhite;
+  background-color: #fff;
+  border: 1px solid #ff00a8;
+  border-radius: 4px;
+  color: #ff00a8;
+  font-size: 1.2rem;
+  font-weight: 400;
   padding: 0.8rem;
-  color: lightcoral;
-  font-size: 1.5rem;
-  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s linear, color 0.2s linear;
+}
+
+.createButton:hover {
+  background-color: #ff00a8;
+  color: #fff;
 }
 </style>
