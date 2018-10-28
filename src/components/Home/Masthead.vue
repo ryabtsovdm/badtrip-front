@@ -12,7 +12,7 @@ export default {
     }
   },
   components: {
-    Login,
+    Logo,
   },
 };
 </script>

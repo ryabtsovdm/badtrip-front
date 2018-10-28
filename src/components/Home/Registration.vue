@@ -32,6 +32,7 @@ export default {
 <template>
   <div class="registration">
     <div class="container">
+      <h1 class="pageheader">Регистрация</h1>
       <form class="registration-form" v-on:submit="onSubmit">
         <div class="textBox">
           <label class="label">E-mail:</label>
@@ -55,6 +56,14 @@ export default {
 </template>
 
 <style>
+.pageheader {
+  display: block;
+  font-family: "PT Sans", sans-serif;
+  margin: 0;
+  padding: 1rem 0.5rem;
+  text-transform: uppercase;
+}
+
 .registration {
   padding: 2rem 0;
 }

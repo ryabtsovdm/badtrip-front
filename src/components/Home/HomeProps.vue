@@ -54,7 +54,7 @@ export default {
   margin: 0 0 2px;
   padding: 0.5rem 1rem;
   text-align: left;
-  transition: background-color 0.2s linear, box-shadow 0.2s linear;
+  transition: background-color 0.2s linear;
 }
 
 .prop:first-child {
@@ -67,7 +67,6 @@ export default {
 
 .prop:hover {
   background-color: #f5f5f5;
-  box-shadow: 2px 2px 2px #ddd;
 }
 .prop__title {
   font-size: 1.2rem;

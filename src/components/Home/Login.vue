@@ -36,6 +36,7 @@ export default {
 <template>
   <div class="login">
     <div class="container">
+      <h1 class="pageheader">Вход</h1>
       <form class="login-form" v-on:submit="onSubmit">
         <div class="textBox">
           <label class="label">E-mail: </label>
